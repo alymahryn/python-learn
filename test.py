@@ -68,30 +68,30 @@ attempts_label = tk.Label(master=score_board,
                           text=f"Attempts: {attempts}",
                           font=(None, 12, "bold"),
                           fg="orange")
-high_score_label.pack(side="left")
-attempts_label.pack(side="right")
+high_score_label.pack(side="left", padx=10)
+attempts_label.pack(side="right", pady=5)
 score_board.pack()
 
 #Label
 guess_label = tk.Label(root, text="Guess a Number Between 1 & 20",
                        font=(None, 16, "bold"))
-guess_label.pack()
+guess_label.pack(pady=5)
 
 #Input
-guess_entry = tk.Entry(root)
+guess_entry = ttk.Entry(root)
 guess_entry.pack()
 
 #Message
 result_label = tk.Label(root, text="")
-result_label.pack(pady=(10, 0))
+result_label.pack(pady=(10))
 
 #Buttons
 button_frame = tk.Frame(root)
 
-check_button = tk.Button(master=button_frame, text="Check", command=check_guess)
-reset_button = tk.Button(master=button_frame, text="Reset", command=reset_game)
+check_button = ttk.Button(master=button_frame, text="Check", command=check_guess)
+reset_button = ttk.Button(master=button_frame, text="Reset", command=reset_game)
 
-check_button.pack(side="left")
+check_button.pack(side="left", padx=5)
 reset_button.pack(side="left")
 
 button_frame.pack()
