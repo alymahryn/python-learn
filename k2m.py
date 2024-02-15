@@ -9,7 +9,8 @@ def converter():
         invalid.config(text="")
         km = int(km_entry.get())
         miles = km * 0.621371
-        miles_result.config(text=f"Miles: {miles}")
+        
+        miles_result.config(text=f"Miles: {round(miles, 2)}")
 
 
     except ValueError:
@@ -35,7 +36,7 @@ convert_frame.pack(pady=5)
 convert_button = ttk.Button(text="Convert", command=converter)
 convert_button.pack()
 
-miles_result = tk.Label(window, text=f"Miles: {miles}")
+miles_result = tk.Label(window, text=f"Miles: {round(miles, 2)}")
 miles_result.pack()
 
 invalid = tk.Label()
