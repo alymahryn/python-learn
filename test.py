@@ -4,40 +4,56 @@ from tkinter import ttk
 from tkinter import PhotoImage
 
 randomNummber = random.randint(1, 20)
-score = float('inf')
+score = 0
 attempts = 0
 
 def check_guess():
     global attempts 
     try:
-        attempts += 1
+        
         guess = int(guess_entry.get())
         if guess <= 0 or guess > 20:
             result_label.config(text="Enter a number between 1 and 20 🤦‍♂️")
         elif guess < randomNummber:
+            attempts = attempts + 1
             result_label.config(text="Higher! 👍")
+            attempts_label.config(text=f"Attempts: {attempts}")
         elif guess > randomNummber:
+            attempts = attempts + 1
             result_label.config(text="Lower! 👎")
+            attempts_label.config(text=f"Attempts: {attempts}")
         else:
-            reset_game()
+            scorekeeper()
+            replay_game()
             result_label.config(text="You got! 🥳")
-            
+                       
     except ValueError:
         result_label.config(text="Please enter a number #️⃣")
 
 def reset_game():
     global randomNummber, score, attempts
     attempts = 0
+    score = 0
+    randomNummber = random.randint(1, 20)
+    guess_entry.delete(0, 'end')
+    result_label.config(text="")
+    preview_label.config(text=randomNummber)  
+    score_label.config(text=f"Score: {score}")
+    attempts_label.config(text=f"Attempts: {attempts}")
+
+def replay_game():
+    global randomNummber, score, attempts
     randomNummber = random.randint(1, 20)
     guess_entry.delete(0, 'end')
     result_label.config(text="")
     preview_label.config(text=randomNummber)
+    score_label.config(text=f"Score: {score}")
+    attempts_label.config(text=f"Attempts: {attempts}")
 
 def scorekeeper():
     global score, attempts
-    if attempts < score:
-        score = attempts
-    high_score_label.config(text=f"High Score: {score}")
+    score = score + 1
+    score_label.config(text=f"Score: {score}")
     attempts_label.config(text=f"Attempts: {attempts}")
 
 
@@ -60,15 +76,15 @@ preview_label.pack()
 #Scoreboard
 score_board = tk.Frame(root)
 
-high_score_label = tk.Label(master=score_board, 
-                            text=f"High Score: {score if score != float('inf') else '0'}",
+score_label = tk.Label(master=score_board, 
+                            text=f"Score: {score}",
                             font=(None, 12, "bold"),
                             fg="green")
 attempts_label = tk.Label(master=score_board, 
                           text=f"Attempts: {attempts}",
                           font=(None, 12, "bold"),
                           fg="orange")
-high_score_label.pack(side="left", padx=10)
+score_label.pack(side="left", padx=10)
 attempts_label.pack(side="right", pady=5)
 score_board.pack()
 
@@ -99,4 +115,3 @@ button_frame.pack()
 
 #loop
 root.mainloop()
-
