@@ -23,6 +23,7 @@ def check_guess():
             result_label.config(text="Lower! 👎")
             attempts_label.config(text=f"Attempts: {attempts}")
         else:
+            attempts = attempts + 1
             scorekeeper()
             replay_game()
             result_label.config(text="You got! 🥳")
