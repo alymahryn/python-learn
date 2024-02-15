@@ -7,10 +7,10 @@ randomNummber = random.randint(1, 20)
 score = 0
 attempts = 0
 
+#Functions 
 def check_guess():
     global attempts 
     try:
-        
         guess = int(guess_entry.get())
         if guess <= 0 or guess > 20:
             result_label.config(text="Enter a number between 1 and 20 🤦‍♂️")
@@ -31,6 +31,7 @@ def check_guess():
     except ValueError:
         result_label.config(text="Please enter a number #️⃣")
 
+      
 def reset_game():
     global randomNummber, score, attempts
     attempts = 0
@@ -58,13 +59,15 @@ def scorekeeper():
     attempts_label.config(text=f"Attempts: {attempts}")
 
 
+
+#Main Window
 root = tk.Tk()
 root.title("Number Guessing Game")
 root.geometry("300x300")
 root.resizable(False, False)
 
+#Logo
 img = PhotoImage(file='logo.png')
-
 img_label = tk.Label(root, image=img)
 img_label.pack(pady=(10, 0))
 
