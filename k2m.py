@@ -19,7 +19,7 @@ def converter():
 
 window = tk.Tk()
 window.title("Km to Miles Converter")
-window.geometry("300x110")
+window.geometry("300x120")
 window.resizable(False, False)
 
 
